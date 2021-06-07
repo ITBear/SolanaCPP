@@ -136,6 +136,7 @@
 !*.bin
 !*.scn
 !*.md
+!*.rst
 
 # Don't ignore DIY layouts
 !*.lay6
