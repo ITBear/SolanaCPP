@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Web assembly CRYPTO CORE test</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	</head>
+	<body>
+		<script src="SolCoreLightWalletCoreWasm.js"></script>
+		<script>
+			function GetRes(aRs)
+			{
+				console.log(JSON.stringify(aRs));
+
+				if (aRs.error)
+				{
+					throw aRs.error;
+				}
+
+				if (aRs.data)
+				{
+					return aRs.data;
+				}
+
+				throw 'Unknown result value: ' + JSON.stringify(aRs);
+			}
+
+			function NewMnemonicPhrase()
+			{
+				var mnemonic_phrase = GetRes(Module.Wallet.new_mnemonic_phrase());
+				console.log("New mnemonic phrase '" + mnemonic_phrase + "'");
+				document.getElementById("mnemonic_phrase_source").value = mnemonic_phrase;
+			}
+
+			function ImportMnemonicPhrase()
+			{
+				//Mnemonic
+				var mnemonic = document.getElementById("mnemonic_phrase_source").value;
+				var password = "";//optional
+
+				console.log("HD mnemonic phrase '" + mnemonic + "', password = '" + password + "'");
+
+				//New wallet
+				if (!window.wallet)
+				{
+					console.log("New wallet");
+					window.wallet = GetRes(Module.Wallet.new_wallet());
+				}
+
+				//New HD group from mnemonic phrase (we can add multiply HD groups, each will have unique ID)
+				console.log("New HD group...");
+
+				window.hdGroupId = GetRes(window.wallet.add_hd_group(mnemonic, password));
+				console.log("New HD group ID = " + window.hdGroupId);
+
+				//New HD address from HD group
+				console.log("New HD addreess from HD group...");
+				var hdAddr		= GetRes(window.wallet.generate_next_hd_address(hdGroupId));
+
+				console.log("New HD addreess...");
+				var addrName	= GetRes(hdAddr.name());
+
+				console.log("New address: " + addrName);
+
+				document.getElementById("hd_address_source").value = addrName;
+			}
+
+			function SignData()
+			{
+				//New wallet
+				if (!window.wallet)
+				{
+					console.log("New wallet");
+					window.wallet = GetRes(Module.Wallet.new_wallet());
+				}
+
+				var addrName = document.getElementById("hd_address_source").value;
+				console.log("Get address from wallet by address ...");
+				var hdAddr = GetRes(window.wallet.find_address(addrName));
+
+				console.log("Sign data...");
+
+				var data = document.getElementById("data_to_sign").value;
+				var signBase64 = GetRes(hdAddr.sign_data_base64(String(data));
+
+				console.log("sign base64: '" + signBase64 + "'");
+
+				document.getElementById("data_sign").value = signBase64;
+			}
+
+		</script>
+
+		<div style="width: 80%">
+			<label>Mnemonic phrase: <input size="60" type="text" id="mnemonic_phrase_source" value=""/></label>
+			<button onclick="NewMnemonicPhrase()">New</button>
+			<button onclick="ImportMnemonicPhrase()">Import</button>
+		</div>
+
+		<div style="width: 80%">
+			<label>HD address: <input size="60" type="text" id="hd_address_source" value=""/></label>
+		</div>
+
+		<div style="width: 80%">
+			Data to sign:<br/>
+
+			<label>Data:           <input size="60" type="text" id="data_to_sign" value=""/></label><br/>
+
+			<button onclick="SignData()">Sign</button>
+		</div>
+
+		<div style="width: 80%">
+			<label>Sign: <input size="60" type="text" id="data_sign" value=""/></label><br/>
+		</div>
+	</body>
+</html>

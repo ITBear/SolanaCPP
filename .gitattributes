@@ -1,0 +1,16 @@
+*.c    text eol=crlf filter=spabs
+*.h    text eol=crlf filter=spabs
+*.cpp  text eol=crlf filter=spabs
+*.hpp  text eol=crlf filter=spabs
+
+# Add to ./.git/config next:
+# >>>...begin...<<<
+# [filter "spabs"]
+#    clean = expand -t 4
+#    smudge = expand -t 4
+#    required
+# [merge]
+#    renormalize = true
+# >>>...end...<<<
+
+
