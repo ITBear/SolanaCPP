@@ -10,7 +10,7 @@ A C++ client libraries set for the [Solana](https://solana.com/) blockchain.
 ### Other
 
 * [Examples](/Examples) - examples.
-* [Doc](/Doc) - examples.
+* [Doc](/Doc) - sources of the [Documentation on readthedocs.io](https://solana-cpp.readthedocs.io/en/latest/).
 * [Build](/Build) - build instructions.
 
 # Disclaimer
