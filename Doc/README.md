@@ -1,3 +1,5 @@
+[![Documentation Status](https://readthedocs.org/projects/solana-cpp/badge/?version=latest)](https://solana-cpp.readthedocs.io/en/latest/?badge=latest)
+
 # How to build documentation
 
 It is assumed that this documentation will be hosted on the website https://readthedocs.org/.
