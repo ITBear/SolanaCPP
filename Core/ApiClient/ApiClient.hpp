@@ -15,12 +15,22 @@ public:
     virtual                             ~ApiClient              (void) noexcept override final;
 
     //getRecentBlockhash
-    getRecentBlockhash_rs_data          getRecentBlockhash      (const getRecentBlockhash_rq_data& aRq);
-    getRecentBlockhash_rs_data          getRecentBlockhash      (void);
+    getRecentBlockhash_rs_data          GetRecentBlockhash      (const getRecentBlockhash_rq_data& aRq);
+    getRecentBlockhash_rs_data          GetRecentBlockhash      (const Commitment::EnumT aCommitment);
 
     //sendTransaction
-    sendTransaction_rs_data             sendTransaction         (std::string_view aTxBase58);
+    sendTransaction_rs_data             SendTransaction         (std::string_view aTxBase58);
 
+    //requestAirdrop
+    requestAirdrop_rs_data              RequestAirdrop          (const requestAirdrop_rq_data& aRq);
+    requestAirdrop_rs_data              RequestAirdrop          (std::string_view   aAddrBase58,
+                                                                 const lamport_t    aAmount);
+
+    //getTransaction
+    getTransaction_rs_data              GetTransaction          (const getTransaction_rq_data& aRq);
+    getTransaction_rs_data              GetTransaction          (std::string_view           aTxSigBase58,
+                                                                 const EncodingType::EnumT  aEncoding,
+                                                                 const Commitment::EnumT    aCommitment);
 
 protected:
     virtual void                        CheckRsResult           (const GpApiRsIfDesc&   aRsDesc,

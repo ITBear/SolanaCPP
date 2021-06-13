@@ -25,18 +25,26 @@ LIBS += -lGpCore2$$TARGET_POSTFIX$$GP_CORE_LIB_V
 
 SOURCES += \
 	BuiltinProgramId.cpp \
+	Commitment.cpp \
+	CommitmentDesc.cpp \
+	EncodingType.cpp \
 	InstructionDesc.cpp \
 	MessageDesc.cpp \
 	MessageHeaderDesc.cpp \
-	NetworkType.cpp
+	NetworkType.cpp \
+	TransactionDesc.cpp
 
 
 HEADERS += \
 	BuiltinProgramId.hpp \
+	Commitment.hpp \
+	CommitmentDesc.hpp \
+	EncodingType.hpp \
 	Enentities_global.hpp \
 	Entities.hpp \
 	InstructionDesc.hpp \
 	MessageDesc.hpp \
 	MessageHeaderDesc.hpp \
 	NetworkType.hpp \
+	TransactionDesc.hpp \
 	Units.hpp

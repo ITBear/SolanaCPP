@@ -19,28 +19,61 @@ ApiClient::~ApiClient (void) noexcept
 {
 }
 
-getRecentBlockhash_rs_data  ApiClient::getRecentBlockhash (const getRecentBlockhash_rq_data& aRq)
+getRecentBlockhash_rs_data  ApiClient::GetRecentBlockhash (const getRecentBlockhash_rq_data& aRq)
 {
     return ProcessRpcRQ<getRecentBlockhash_rq,
                         getRecentBlockhash_rs>(aRq, "getRecentBlockhash"_sv, std::nullopt, std::nullopt);
 }
 
-getRecentBlockhash_rs_data  ApiClient::getRecentBlockhash (void)
+getRecentBlockhash_rs_data  ApiClient::GetRecentBlockhash (const Commitment::EnumT aCommitment)
 {
-    auto rq = {MakeSP<GetRecentBlockhashRqData>()};
-    return getRecentBlockhash(rq);
+    auto rq = MakeSP<GetRecentBlockhashRqData>(aCommitment);
+    return GetRecentBlockhash(rq);
 }
 
-sendTransaction_rs_data ApiClient::sendTransaction (std::string_view aTxBase58)
+sendTransaction_rs_data ApiClient::SendTransaction (std::string_view aTxBase58)
 {
     return ProcessRpcRQ<sendTransaction_rq,
                         sendTransaction_rs>({std::string(aTxBase58)}, "sendTransaction"_sv, std::nullopt, std::nullopt);
 }
 
+requestAirdrop_rs_data  ApiClient::RequestAirdrop (const requestAirdrop_rq_data& aRq)
+{
+    return ProcessRpcRQ<requestAirdrop_rq,
+                        requestAirdrop_rs>(aRq, "requestAirdrop"_sv, std::nullopt, std::nullopt);
+}
+
+requestAirdrop_rs_data  ApiClient::RequestAirdrop
+(
+    std::string_view    aAddrBase58,
+    const lamport_t     aAmount
+)
+{
+    auto rq = MakeSP<RequestAirdropRqData>(aAddrBase58, aAmount);
+    return RequestAirdrop(rq);
+}
+
+getTransaction_rs_data  ApiClient::GetTransaction (const getTransaction_rq_data& aRq)
+{
+    return ProcessRpcRQ<getTransaction_rq,
+                        getTransaction_rs>(aRq, "getTransaction"_sv, std::nullopt, std::nullopt);
+}
+
+getTransaction_rs_data  ApiClient::GetTransaction
+(
+    std::string_view            aTxSigBase58,
+    const EncodingType::EnumT   aEncoding,
+    const Commitment::EnumT     aCommitment
+)
+{
+    auto rq = MakeSP<GetTransactionRqData>(aTxSigBase58, aEncoding, aCommitment);
+    return GetTransaction(rq);
+}
+
 void    ApiClient::CheckRsResult
 (
-        const GpApiRsIfDesc&    aRsDesc,
-        std::string_view        aMethodName
+    const GpApiRsIfDesc&    aRsDesc,
+    std::string_view        aMethodName
 )
 {
     GpApiRsResultDesc::CSP resCSP = aRsDesc.Result();

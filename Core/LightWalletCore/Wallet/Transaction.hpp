@@ -7,6 +7,7 @@ namespace Sol::Core::LightWallet {
 class SOL_CORE_LIGHT_WALLET_CORE_API Transaction
 {
 public:
+    CLASS_REMOVE_CTRS_EXCEPT_DEFAULT(Transaction)
     CLASS_DECLARE_DEFAULTS(Transaction)
 
 public:
@@ -15,12 +16,7 @@ public:
 
 public:
                                         Transaction     (void) noexcept;
-                                        Transaction     (const Transaction& aTransaction);
-                                        Transaction     (Transaction&& aTransaction) noexcept;
     virtual                             ~Transaction    (void) noexcept;
-
-    Transaction&                        operator=       (const Transaction& aTransaction);
-    Transaction&                        operator=       (Transaction&& aTransaction) noexcept;
 
 public:
     GpVector<GpBytesArray>              signatures;

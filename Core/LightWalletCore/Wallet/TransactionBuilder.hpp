@@ -26,7 +26,7 @@ public:
     TransactionBuilder&         RecentBlockhash         (const GpBytesArray& aRecentBlockhash);
     InstructionBuilder&         InstructionBegin        (void);
     TransactionBuilder&         AddInstruction          (Sol::Core::DataModel::InstructionDesc::SP aInstruction);
-    TransactionBuilder&         AddSign                 (const Address& aAddress);
+    TransactionBuilder&         AddSign                 (const GpCryptoAddress& aAddress);
 
     Transaction&                _Transaction            (void);
 

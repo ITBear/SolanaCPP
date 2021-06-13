@@ -9,7 +9,7 @@ GetRecentBlockhashRqData::GetRecentBlockhashRqData (void) noexcept
 {
 }
 
-GetRecentBlockhashRqData::GetRecentBlockhashRqData (std::string_view aCommitment):
+GetRecentBlockhashRqData::GetRecentBlockhashRqData (const Commitment::EnumT aCommitment):
 commitment(aCommitment)
 {
 }

@@ -1,8 +1,8 @@
-#include "ProgramBuilder.hpp"
+#include "ProgramIds.hpp"
 
 namespace Sol::Core::LightWallet {
 
-const GpArray<GpBytesArray, Sol::Core::DataModel::BuiltinProgramId::SCount().As<size_t>()>  ProgramBuilder::sBuiltinProgramIds =
+const GpArray<GpBytesArray, Sol::Core::DataModel::BuiltinProgramId::SCount().As<size_t>()>  ProgramIds::sBuiltinProgramIds =
 {
     //SYSTEM:  11111111111111111111111111111111
     GpBytesArray({std::byte(0x00),std::byte(0x00),std::byte(0x00),std::byte(0x00),std::byte(0x00),std::byte(0x00),std::byte(0x00),std::byte(0x00),std::byte(0x00),std::byte(0x00),std::byte(0x00),std::byte(0x00),std::byte(0x00),std::byte(0x00),std::byte(0x00),std::byte(0x00),std::byte(0x00),std::byte(0x00),std::byte(0x00),std::byte(0x00),std::byte(0x00),std::byte(0x00),std::byte(0x00),std::byte(0x00),std::byte(0x00),std::byte(0x00),std::byte(0x00),std::byte(0x00),std::byte(0x00),std::byte(0x00),std::byte(0x00),std::byte(0x00)}),
@@ -23,35 +23,9 @@ const GpArray<GpBytesArray, Sol::Core::DataModel::BuiltinProgramId::SCount().As<
     GpBytesArray({std::byte(0x04),std::byte(0xc6),std::byte(0xfc),std::byte(0x20),std::byte(0xf0),std::byte(0x50),std::byte(0xcc),std::byte(0xf0),std::byte(0x55),std::byte(0x84),std::byte(0xd7),std::byte(0x21),std::byte(0x1c),std::byte(0x9f),std::byte(0x8c),std::byte(0xf5),std::byte(0x9e),std::byte(0xc1),std::byte(0x47),std::byte(0x85),std::byte(0xbb),std::byte(0x16),std::byte(0x6a),std::byte(0x1e),std::byte(0x28),std::byte(0x30),std::byte(0xe8),std::byte(0x12),std::byte(0x20),std::byte(0x00),std::byte(0x00),std::byte(0x00)})
 };
 
-const GpBytesArray& ProgramBuilder::SBuiltinProgramId (Sol::Core::DataModel::BuiltinProgramId::EnumT aBuiltinProgramId)
+const GpBytesArray& ProgramIds::SId (Sol::Core::DataModel::BuiltinProgramId::EnumT aBuiltinProgramId)
 {
     return sBuiltinProgramIds.at(size_t(aBuiltinProgramId));
-}
-
-GpBytesArray    ProgramBuilder::SCreateAccount
-(
-    const lamport_t     aLamports,
-    const size_byte_t   aSpace,
-    const GpRawPtrByteR aProgramId
-)
-{
-    GpBytesArray                    data;
-    GpByteWriterStorageByteArray    dataStorage(data);
-    GpByteWriter                    dataWriter(dataStorage);
-
-    //instruction (4 bytes)
-    dataWriter.UInt32(BitOps::H2N(0));
-
-    //lamports (8 bytes)
-    dataWriter.SInt64(BitOps::H2N(aLamports.As<s_int_64>()));
-
-    //space (8 bytes)
-    dataWriter.SInt64(BitOps::H2N(aSpace.As<s_int_64>()));
-
-    //programId
-    dataWriter.Bytes(aProgramId);
-
-    return data;
 }
 
 }//namespace Sol::Core::LightWallet

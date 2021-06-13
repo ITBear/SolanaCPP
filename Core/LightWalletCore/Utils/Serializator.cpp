@@ -2,6 +2,30 @@
 
 namespace Sol::Core::LightWallet {
 
+GpBytesArray    Serializator::SSerialize (const Transaction& aTransaction)
+{
+    GpBytesArray                                serializedTransactionData;
+    serializedTransactionData.reserve(2048);
+    GpByteWriterStorageByteArray                serializedTransactionDataStorage(serializedTransactionData);
+    GpByteWriter                                serializedTransactionDataWriter(serializedTransactionDataStorage);
+
+    SSerialize(aTransaction, serializedTransactionDataWriter);
+
+    return serializedTransactionData;
+}
+
+GpBytesArray    Serializator::SSerializeNoSig (const Transaction& aTransaction)
+{
+    GpBytesArray                                serializedTransactionData;
+    serializedTransactionData.reserve(2048);
+    GpByteWriterStorageByteArray                serializedTransactionDataStorage(serializedTransactionData);
+    GpByteWriter                                serializedTransactionDataWriter(serializedTransactionDataStorage);
+
+    SSerializeNoSig(aTransaction, serializedTransactionDataWriter);
+
+    return serializedTransactionData;
+}
+
 void    Serializator::SSerialize
 (
     const   Transaction&    aTransaction,

@@ -4,25 +4,24 @@
 
 namespace Sol::Core::API::RPC {
 
-using namespace Sol::Core::DataModel;
-
 //----------------------------- RQ -----------------------------
 class SOL_CORE_DATA_MODEL_API_API GetRecentBlockhashRqData final: public GpTypeStructBase
 {
 public:
+    CLASS_REMOVE_CTRS_EXCEPT_DEFAULT(GetRecentBlockhashRqData)
     CLASS_DECLARE_DEFAULTS(GetRecentBlockhashRqData)
     TYPE_STRUCT_DECLARE("dcb5b08c-b40f-40ef-9c2e-d129579ef43a"_sv)
 
 public:
                         GetRecentBlockhashRqData        (void) noexcept;
-                        GetRecentBlockhashRqData        (std::string_view aCommitment);
+                        GetRecentBlockhashRqData        (const Commitment::EnumT aCommitment);
     virtual             ~GetRecentBlockhashRqData       (void) noexcept override final;
 
 public:
-    std::string         commitment  = std::string("finalized"_sv);
+    CommitmentDesc      commitment;
 };
 
-using getRecentBlockhash_rq_data = GetRecentBlockhashRqData::C::Vec::SP;
+using getRecentBlockhash_rq_data = GetRecentBlockhashRqData::SP;
 
 JSON_RPC_API_RQ(SOL_CORE_DATA_MODEL_API_API, getRecentBlockhash, "cc5f1128-4228-4501-a406-337ddda8c219"_sv)
 

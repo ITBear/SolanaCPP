@@ -18,7 +18,8 @@ public:
     virtual                 ~Address            (void) noexcept override final;
 
 protected:
-    virtual std::string     OnRecalcAddrStr     (void) const override final;
+    virtual std::tuple<GpBytesArray, std::string>
+                            OnRecalcAddrStr     (void) const override final;
 };
 
 }//namespace Sol::Core::LightWallet

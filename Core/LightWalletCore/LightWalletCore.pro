@@ -13,10 +13,10 @@ include(../../../QtGlobalPro.pri)
 
 #------------------------------ LIBS BEGIN ---------------------------------
 os_windows{
-	GP_CORE_LIB_V							= 2
-	GP_CRYPTO_CORE_LIB_V					= 0
+	GP_CORE_LIB_V			= 2
+	GP_CRYPTO_CORE_LIB_V	= 0
 
-	SOL_CORE_DATA_MODEL_ENTITIES_LIB_V		= 0
+	SOL_LIB_V				= 0
 }
 
 os_linux{
@@ -25,7 +25,7 @@ os_linux{
 LIBS += -lGpCore2$$TARGET_POSTFIX$$GP_CORE_LIB_V
 LIBS += -lGpCryptoCore$$TARGET_POSTFIX$$GP_CRYPTO_CORE_LIB_V
 
-LIBS += -lSolCoreDataModelEntities$$TARGET_POSTFIX$$SOL_CORE_DATA_MODEL_ENTITIES_LIB_V
+LIBS += -lSolCoreDataModelEntities$$TARGET_POSTFIX$$SOL_LIB_V
 #------------------------------ LIBS END ---------------------------------
 
 SOURCES += \
@@ -34,9 +34,12 @@ SOURCES += \
 	Wallet/Address.cpp \
 	Wallet/AddressFactory.cpp \
 	Wallet/InstructionBuilder.cpp \
-	Wallet/ProgramBuilder.cpp \
+	Wallet/ProgramIds.cpp \
+	Wallet/SystemDataBuilder.cpp \
+	Wallet/SystemInstruction.cpp \
 	Wallet/Transaction.cpp \
-	Wallet/TransactionBuilder.cpp
+	Wallet/TransactionBuilder.cpp \
+	Wallet/Wallet.cpp
 
 HEADERS += \
 	LightWalletCore.hpp \
@@ -47,7 +50,9 @@ HEADERS += \
 	Wallet/Address.hpp \
 	Wallet/AddressFactory.hpp \
 	Wallet/InstructionBuilder.hpp \
-	Wallet/ProgramBuilder.hpp \
+	Wallet/ProgramIds.hpp \
+	Wallet/SystemDataBuilder.hpp \
+	Wallet/SystemInstruction.hpp \
 	Wallet/Transaction.hpp \
 	Wallet/TransactionBuilder.hpp \
 	Wallet/Wallet.hpp

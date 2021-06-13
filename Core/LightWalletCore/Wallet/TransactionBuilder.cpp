@@ -26,7 +26,7 @@ TransactionBuilder& TransactionBuilder::MessageHeader
     const count_t aNumReadonlyUnsignedAccounts
 )
 {
-    class Sol::Core::DataModel::MessageHeaderDesc& header = _Transaction().message.header;
+    Sol::Core::DataModel::MessageHeaderDesc& header = _Transaction().message.header;
 
     header.num_required_signatures          = aNumRequiredSignatures;
     header.num_readonly_signed_accounts     = aNumReadonlySignedAccounts;
@@ -61,7 +61,7 @@ TransactionBuilder& TransactionBuilder::AddInstruction (Sol::Core::DataModel::In
     return *this;
 }
 
-TransactionBuilder& TransactionBuilder::AddSign (const Address& aAddress)
+TransactionBuilder& TransactionBuilder::AddSign (const GpCryptoAddress& aAddress)
 {
     SerializeMessage();
 

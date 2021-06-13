@@ -13,9 +13,9 @@ include(../../../../QtGlobalPro.pri)
 
 #------------------------------ LIBS BEGIN ---------------------------------
 os_windows{
-	GP_CORE_LIB_V							= 2
+	GP_CORE_LIB_V	= 2
 
-	SOL_CORE_DATA_MODEL_ENTITIES_LIB_V		= 0
+	SOL_LIB_V		= 0
 }
 
 os_linux{
@@ -23,11 +23,13 @@ os_linux{
 
 LIBS += -lGpCore2$$TARGET_POSTFIX$$GP_CORE_LIB_V
 
-LIBS += -lSolCoreDataModelEntities$$TARGET_POSTFIX$$SOL_CORE_DATA_MODEL_ENTITIES_LIB_V
+LIBS += -lSolCoreDataModelEntities$$TARGET_POSTFIX$$SOL_LIB_V
 #------------------------------ LIBS END ---------------------------------
 
 SOURCES += \
 	Methods/getRecentBlockhash.cpp \
+	Methods/getTransaction.cpp \
+	Methods/requestAirdrop.cpp \
 	Methods/sendTransaction.cpp
 
 HEADERS += \
@@ -35,4 +37,6 @@ HEADERS += \
 	Api.hpp \
 	Methods/Methods.hpp \
 	Methods/getRecentBlockhash.hpp \
+	Methods/getTransaction.hpp \
+	Methods/requestAirdrop.hpp \
 	Methods/sendTransaction.hpp

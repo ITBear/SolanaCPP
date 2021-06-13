@@ -15,6 +15,7 @@
 
 using namespace GPlatform;
 using namespace GPlatform::API::RPC;
+using namespace Sol::Core::DataModel;
 
 namespace Sol::Core::API::RPC
 {}

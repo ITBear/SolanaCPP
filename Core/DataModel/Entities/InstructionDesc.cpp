@@ -8,20 +8,6 @@ InstructionDesc::InstructionDesc (void) noexcept
 {
 }
 
-InstructionDesc::InstructionDesc (const InstructionDesc& aInstructionDesc):
-program_id_index(aInstructionDesc.program_id_index),
-accounts(aInstructionDesc.accounts),
-data(aInstructionDesc.data)
-{
-}
-
-InstructionDesc::InstructionDesc (InstructionDesc&& aInstructionDesc) noexcept:
-program_id_index(std::move(aInstructionDesc.program_id_index)),
-accounts(std::move(aInstructionDesc.accounts)),
-data(std::move(aInstructionDesc.data))
-{
-}
-
 InstructionDesc::InstructionDesc
 (
     const count_t               aProgramIdIndex,
@@ -36,24 +22,6 @@ data(aData)
 
 InstructionDesc::~InstructionDesc (void) noexcept
 {
-}
-
-InstructionDesc&    InstructionDesc::operator= (const InstructionDesc& aInstructionDesc)
-{
-    program_id_index    = aInstructionDesc.program_id_index;
-    accounts            = aInstructionDesc.accounts;
-    data                = aInstructionDesc.data;
-
-    return *this;
-}
-
-InstructionDesc&    InstructionDesc::operator= (InstructionDesc&& aInstructionDesc) noexcept
-{
-    program_id_index    = std::move(aInstructionDesc.program_id_index);
-    accounts            = std::move(aInstructionDesc.accounts);
-    data                = std::move(aInstructionDesc.data);
-
-    return *this;
 }
 
 void    InstructionDesc::_SCollectStructProps (GpTypePropInfo::C::Vec::Val& aPropsOut)

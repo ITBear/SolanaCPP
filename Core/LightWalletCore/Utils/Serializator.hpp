@@ -9,6 +9,8 @@ class SOL_CORE_LIGHT_WALLET_CORE_API Serializator
     CLASS_REMOVE_CTRS(Serializator)
 
 public:
+    static GpBytesArray SSerialize      (const Transaction& aTransaction);
+    static GpBytesArray SSerializeNoSig (const Transaction& aTransaction);
     static void         SSerialize      (const Transaction& aTransaction,
                                          GpByteWriter&      aWriter);
     static void         SSerializeNoSig (const Transaction& aTransaction,

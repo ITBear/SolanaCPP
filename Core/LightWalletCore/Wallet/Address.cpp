@@ -15,7 +15,7 @@ Address::~Address (void) noexcept
 {
 }
 
-std::string Address::OnRecalcAddrStr (void) const
+std::tuple<GpBytesArray, std::string>   Address::OnRecalcAddrStr (void) const
 {
     std::string addr = GpBase58::SEncodeToStr(KeyPair().PublicKey(), GpBase58Alphabet::NAKAMOTO);
 
@@ -27,7 +27,7 @@ std::string Address::OnRecalcAddrStr (void) const
         addr = padding + addr;
     }
 
-    return addr;
+    return {GpBytesArrayUtils::SMake(KeyPair().PublicKey()), addr};
 }
 
 }//namespace Sol::Core::LightWallet

@@ -4,8 +4,6 @@
 
 namespace Sol::Core::API::RPC {
 
-using namespace Sol::Core::DataModel;
-
 //----------------------------- RQ -----------------------------
 using sendTransaction_rq_data = GpVector<std::string>;
 

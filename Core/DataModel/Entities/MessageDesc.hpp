@@ -10,6 +10,7 @@ namespace Sol::Core::DataModel {
 class SOL_CORE_DATA_MODEL_ENTITIES_API MessageDesc final: public GpTypeStructBase
 {
 public:
+    CLASS_REMOVE_CTRS_EXCEPT_DEFAULT(MessageDesc)
     CLASS_DECLARE_DEFAULTS(MessageDesc)
     TYPE_STRUCT_DECLARE("a8f4bf2c-25c1-4d51-a69c-6bac03ee09b2"_sv)
 
@@ -19,16 +20,11 @@ public:
 
 public:
                                 MessageDesc     (void) noexcept;
-                                MessageDesc     (const MessageDesc& aMessageDesc);
-                                MessageDesc     (MessageDesc&& aMessageDesc) noexcept;
                                 MessageDesc     (const MessageHeaderDesc&           aHeader,
                                                  const GpVector<GpBytesArray>&      aAccountKeys,
                                                  const GpBytesArray&                aRecentBlockhash,
                                                  const InstructionDesc::C::Vec::SP& aInstructions);
     virtual                     ~MessageDesc    (void) noexcept override final;
-
-    MessageDesc&                operator=       (const MessageDesc& aMessageDesc);
-    MessageDesc&                operator=       (MessageDesc&& aMessageDesc) noexcept;
 
 public:
     MessageHeaderDesc           header;

@@ -8,20 +8,6 @@ MessageHeaderDesc::MessageHeaderDesc (void) noexcept
 {
 }
 
-MessageHeaderDesc::MessageHeaderDesc (const MessageHeaderDesc& aMessageHeaderDesc) noexcept:
-num_required_signatures(aMessageHeaderDesc.num_required_signatures),
-num_readonly_signed_accounts(aMessageHeaderDesc.num_readonly_signed_accounts),
-num_readonly_unsigned_accounts(aMessageHeaderDesc.num_readonly_unsigned_accounts)
-{
-}
-
-MessageHeaderDesc::MessageHeaderDesc (MessageHeaderDesc&& aMessageHeaderDesc) noexcept:
-num_required_signatures(std::move(aMessageHeaderDesc.num_required_signatures)),
-num_readonly_signed_accounts(std::move(aMessageHeaderDesc.num_readonly_signed_accounts)),
-num_readonly_unsigned_accounts(std::move(aMessageHeaderDesc.num_readonly_unsigned_accounts))
-{
-}
-
 MessageHeaderDesc::MessageHeaderDesc
 (
     const count_t aNumRequiredSignatures,
@@ -31,29 +17,18 @@ MessageHeaderDesc::MessageHeaderDesc
 num_required_signatures(aNumRequiredSignatures),
 num_readonly_signed_accounts(aNumReadonlySignedAccounts),
 num_readonly_unsigned_accounts(aNumReadonlyUnsignedAccounts)
+{   
+}
+
+MessageHeaderDesc::MessageHeaderDesc (const MessageHeaderDesc& aDesc) noexcept:
+num_required_signatures(aDesc.num_required_signatures),
+num_readonly_signed_accounts(aDesc.num_readonly_signed_accounts),
+num_readonly_unsigned_accounts(aDesc.num_readonly_unsigned_accounts)
 {
 }
 
 MessageHeaderDesc::~MessageHeaderDesc (void) noexcept
 {
-}
-
-MessageHeaderDesc&  MessageHeaderDesc::operator= (const MessageHeaderDesc& aMessageHeaderDesc)
-{
-    num_required_signatures         = aMessageHeaderDesc.num_required_signatures;
-    num_readonly_signed_accounts    = aMessageHeaderDesc.num_readonly_signed_accounts;
-    num_readonly_unsigned_accounts  = aMessageHeaderDesc.num_readonly_unsigned_accounts;
-
-    return *this;
-}
-
-MessageHeaderDesc&  MessageHeaderDesc::operator= (MessageHeaderDesc&& aMessageHeaderDesc) noexcept
-{
-    num_required_signatures         = std::move(aMessageHeaderDesc.num_required_signatures);
-    num_readonly_signed_accounts    = std::move(aMessageHeaderDesc.num_readonly_signed_accounts);
-    num_readonly_unsigned_accounts  = std::move(aMessageHeaderDesc.num_readonly_unsigned_accounts);
-
-    return *this;
 }
 
 void    MessageHeaderDesc::_SCollectStructProps (GpTypePropInfo::C::Vec::Val& aPropsOut)

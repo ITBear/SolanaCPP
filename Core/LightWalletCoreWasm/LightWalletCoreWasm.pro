@@ -13,11 +13,10 @@ include(../../../QtGlobalPro.pri)
 
 #------------------------------ LIBS BEGIN ---------------------------------
 os_windows{
-	GP_CORE_LIB_V						= 2
-	GP_CRYPTO_CORE_LIB_V				= 0
+	GP_CORE_LIB_V			= 2
+	GP_CRYPTO_CORE_LIB_V	= 0
 
-	SOL_CORE_DATA_MODEL_ENTITIES_LIB_V	= 0
-	SOL_CORE_LIGHT_WALLET_CORE_LIB_V	= 0
+	SOL_LIB_V				= 0
 }
 
 LIBS += -lsodium
@@ -27,8 +26,8 @@ LIBS += -lutf8proc$$TARGET_POSTFIX
 LIBS += -lGpCore2$$TARGET_POSTFIX$$GP_CORE_LIB_V
 LIBS += -lGpCryptoCore$$TARGET_POSTFIX$$GP_CRYPTO_CORE_LIB_V
 
-LIBS += -lSolCoreDataModelEntities$$TARGET_POSTFIX$$SOL_CORE_DATA_MODEL_ENTITIES_LIB_V
-LIBS += -lSolCoreLightWalletCore$$TARGET_POSTFIX$$SOL_CORE_LIGHT_WALLET_CORE_LIB_V
+LIBS += -lSolCoreDataModelEntities$$TARGET_POSTFIX$$SOL_LIB_V
+LIBS += -lSolCoreLightWalletCore$$TARGET_POSTFIX$$SOL_LIB_V
 #------------------------------ LIBS END ---------------------------------
 
 SOURCES += \
