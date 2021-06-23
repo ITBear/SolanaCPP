@@ -27,18 +27,23 @@ SOURCES += \
 	BuiltinProgramId.cpp \
 	Commitment.cpp \
 	CommitmentDesc.cpp \
+	ContextDesc.cpp \
 	EncodingType.cpp \
 	InstructionDesc.cpp \
 	MessageDesc.cpp \
 	MessageHeaderDesc.cpp \
 	NetworkType.cpp \
-	TransactionDesc.cpp
+	TransactionDesc.cpp \
+	TransactionResultDesc.cpp \
+	TransactionResultMetaDesc.cpp \
+	VersionDesc.cpp
 
 
 HEADERS += \
 	BuiltinProgramId.hpp \
 	Commitment.hpp \
 	CommitmentDesc.hpp \
+	ContextDesc.hpp \
 	EncodingType.hpp \
 	Enentities_global.hpp \
 	Entities.hpp \
@@ -47,4 +52,7 @@ HEADERS += \
 	MessageHeaderDesc.hpp \
 	NetworkType.hpp \
 	TransactionDesc.hpp \
-	Units.hpp
+	TransactionResultDesc.hpp \
+	TransactionResultMetaDesc.hpp \
+	Units.hpp \
+	VersionDesc.hpp

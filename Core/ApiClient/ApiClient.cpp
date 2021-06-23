@@ -62,12 +62,52 @@ getTransaction_rs_data  ApiClient::GetTransaction (const getTransaction_rq_data&
 getTransaction_rs_data  ApiClient::GetTransaction
 (
     std::string_view            aTxSigBase58,
-    const EncodingType::EnumT   aEncoding,
     const Commitment::EnumT     aCommitment
 )
 {
-    auto rq = MakeSP<GetTransactionRqData>(aTxSigBase58, aEncoding, aCommitment);
+    auto rq = MakeSP<GetTransactionRqData>(aTxSigBase58, aCommitment);
     return GetTransaction(rq);
+}
+
+getBalance_rs_data  ApiClient::GetBalance (const getBalance_rq_data& aRq)
+{
+    return ProcessRpcRQ<getBalance_rq,
+                        getBalance_rs>(aRq, "getBalance"_sv, std::nullopt, std::nullopt);
+}
+
+getBalance_rs_data  ApiClient::GetBalance
+(
+    std::string_view        aAddrBase58,
+    const Commitment::EnumT aCommitment
+)
+{
+    auto rq = MakeSP<GetBalanceRqData>(aAddrBase58, aCommitment);
+    return GetBalance(rq);
+}
+
+getTransactionCount_rs_data ApiClient::GetTransactionCount (const getTransactionCount_rq_data& aRq)
+{
+    return ProcessRpcRQ<getTransactionCount_rq,
+                        getTransactionCount_rs>(aRq, "getTransactionCount"_sv, std::nullopt, std::nullopt);
+}
+
+getTransactionCount_rs_data ApiClient::GetTransactionCount (void)
+{
+    auto rq = MakeSP<GpApiVoidDesc>();
+    return GetTransactionCount(rq);
+}
+
+//getVersion
+getVersion_rs_data  ApiClient::GetVersion (const getVersion_rq_data& aRq)
+{
+    return ProcessRpcRQ<getVersion_rq,
+                        getVersion_rs>(aRq, "getVersion"_sv, std::nullopt, std::nullopt);
+}
+
+getVersion_rs_data  ApiClient::GetVersion (void)
+{
+    auto rq = MakeSP<GpApiVoidDesc>();
+    return GetVersion(rq);
 }
 
 void    ApiClient::CheckRsResult

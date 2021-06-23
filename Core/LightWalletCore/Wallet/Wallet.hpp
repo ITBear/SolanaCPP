@@ -4,7 +4,6 @@
 #include "AddressFactory.hpp"
 #include "InstructionBuilder.hpp"
 #include "SystemDataBuilder.hpp"
-#include "Transaction.hpp"
 #include "TransactionBuilder.hpp"
 #include "ProgramIds.hpp"
 

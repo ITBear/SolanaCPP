@@ -37,7 +37,6 @@ SOURCES += \
 	Wallet/ProgramIds.cpp \
 	Wallet/SystemDataBuilder.cpp \
 	Wallet/SystemInstruction.cpp \
-	Wallet/Transaction.cpp \
 	Wallet/TransactionBuilder.cpp \
 	Wallet/Wallet.cpp
 
@@ -53,6 +52,5 @@ HEADERS += \
 	Wallet/ProgramIds.hpp \
 	Wallet/SystemDataBuilder.hpp \
 	Wallet/SystemInstruction.hpp \
-	Wallet/Transaction.hpp \
 	Wallet/TransactionBuilder.hpp \
 	Wallet/Wallet.hpp

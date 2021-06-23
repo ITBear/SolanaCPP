@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Address.hpp"
-#include "Transaction.hpp"
 #include "InstructionBuilder.hpp"
 
 namespace Sol::Core::LightWallet {
@@ -11,12 +10,16 @@ class SOL_CORE_LIGHT_WALLET_CORE_API TransactionBuilder
     CLASS_REMOVE_CTRS_EXCEPT_DEFAULT(TransactionBuilder);
 
 public:
+    using TransactionT = Sol::Core::DataModel::TransactionDesc;
+
+public:
                                 TransactionBuilder      (void) noexcept;
                                 ~TransactionBuilder     (void) noexcept;
 
     static TransactionBuilder   SNew                    (void) {return TransactionBuilder();}
 
-    Transaction::SP             Build                   (void);
+
+    TransactionT::SP            Build                   (void);
 
     TransactionBuilder&         MessageHeader           (const count_t aNumRequiredSignatures,
                                                          const count_t aNumReadonlySignedAccounts,
@@ -28,14 +31,15 @@ public:
     TransactionBuilder&         AddInstruction          (Sol::Core::DataModel::InstructionDesc::SP aInstruction);
     TransactionBuilder&         AddSign                 (const GpCryptoAddress& aAddress);
 
-    Transaction&                _Transaction            (void);
+    TransactionT&               _Transaction            (void);
 
 private:
-    void                        SerializeMessage        (void);
+    const GpBytesArray&         SerializedMessage       (void);
 
 private:
-    Transaction::SP             iTransaction;
+    TransactionT::SP            iTransaction;
     InstructionBuilder          iInstructionBuilder;
+    GpBytesArray                iSerializedData;
 };
 
 }//namespace Sol::Core::LightWallet

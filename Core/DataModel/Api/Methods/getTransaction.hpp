@@ -37,7 +37,6 @@ public:
 public:
                         GetTransactionRqData        (void) noexcept;
                         GetTransactionRqData        (std::string_view           aTxSigBase58,
-                                                     const EncodingType::EnumT  aEncoding,
                                                      const Commitment::EnumT    aCommitment);
     virtual             ~GetTransactionRqData       (void) noexcept override final;
 
@@ -51,7 +50,7 @@ using getTransaction_rq_data = GetTransactionRqData::SP;
 JSON_RPC_API_RQ(SOL_CORE_DATA_MODEL_API_API, getTransaction, "ab2ad679-ce70-49b6-8710-c22ca645827d"_sv)
 
 //----------------------------- RS -----------------------------
-using getTransaction_rs_data = TransactionDesc::SP;
+using getTransaction_rs_data = TransactionResultDesc::SP;
 
 JSON_RPC_API_RS(SOL_CORE_DATA_MODEL_API_API, getTransaction, "adc914ff-2f7a-44e9-ba73-39e93c7ab6ce"_sv)
 

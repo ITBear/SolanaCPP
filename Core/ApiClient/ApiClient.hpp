@@ -29,8 +29,19 @@ public:
     //getTransaction
     getTransaction_rs_data              GetTransaction          (const getTransaction_rq_data& aRq);
     getTransaction_rs_data              GetTransaction          (std::string_view           aTxSigBase58,
-                                                                 const EncodingType::EnumT  aEncoding,
                                                                  const Commitment::EnumT    aCommitment);
+    //getBalance
+    getBalance_rs_data                  GetBalance              (const getBalance_rq_data&  aRq);
+    getBalance_rs_data                  GetBalance              (std::string_view           aAddrBase58,
+                                                                 const Commitment::EnumT    aCommitment);
+
+    //getTransactionCount
+    getTransactionCount_rs_data         GetTransactionCount     (const getTransactionCount_rq_data& aRq);
+    getTransactionCount_rs_data         GetTransactionCount     (void);
+
+    //getVersion
+    getVersion_rs_data                  GetVersion              (const getVersion_rq_data&  aRq);
+    getVersion_rs_data                  GetVersion              (void);
 
 protected:
     virtual void                        CheckRsResult           (const GpApiRsIfDesc&   aRsDesc,

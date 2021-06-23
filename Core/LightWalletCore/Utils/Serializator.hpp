@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Wallet/Transaction.hpp"
+#include "../LightWalletCore_global.hpp"
 
 namespace Sol::Core::LightWallet {
 
@@ -9,14 +9,19 @@ class SOL_CORE_LIGHT_WALLET_CORE_API Serializator
     CLASS_REMOVE_CTRS(Serializator)
 
 public:
-    static GpBytesArray SSerialize      (const Transaction& aTransaction);
-    static GpBytesArray SSerializeNoSig (const Transaction& aTransaction);
-    static void         SSerialize      (const Transaction& aTransaction,
-                                         GpByteWriter&      aWriter);
-    static void         SSerializeNoSig (const Transaction& aTransaction,
-                                         GpByteWriter&      aWriter);
+    using TransactionT = Sol::Core::DataModel::TransactionDesc;
+
+public:
+    static GpBytesArray SSerialize      (const TransactionT& aTransaction);
+    static GpBytesArray SSerializeNoSig (const TransactionT& aTransaction);
+    static void         SSerialize      (const TransactionT&    aTransaction,
+                                         GpByteWriter&          aWriter);
+    static void         SSerializeNoSig (const TransactionT&    aTransaction,
+                                         GpByteWriter&          aWriter);
     static void         SSerialize      (const Sol::Core::DataModel::MessageDesc&   aMessage,
                                          GpByteWriter&                              aWriter);
+
+private:
     static void         SSerialize      (const Sol::Core::DataModel::MessageHeaderDesc& aMessageHeader,
                                          GpByteWriter&                                  aWriter);
     static void         SSerialize      (const GpVector<Sol::Core::DataModel::InstructionDesc::SP>& aInstructions,

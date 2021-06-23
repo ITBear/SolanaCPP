@@ -2,7 +2,7 @@
 
 namespace Sol::Core::LightWallet {
 
-GpBytesArray    Serializator::SSerialize (const Transaction& aTransaction)
+GpBytesArray    Serializator::SSerialize (const TransactionT& aTransaction)
 {
     GpBytesArray                                serializedTransactionData;
     serializedTransactionData.reserve(2048);
@@ -14,7 +14,7 @@ GpBytesArray    Serializator::SSerialize (const Transaction& aTransaction)
     return serializedTransactionData;
 }
 
-GpBytesArray    Serializator::SSerializeNoSig (const Transaction& aTransaction)
+GpBytesArray    Serializator::SSerializeNoSig (const TransactionT& aTransaction)
 {
     GpBytesArray                                serializedTransactionData;
     serializedTransactionData.reserve(2048);
@@ -28,21 +28,21 @@ GpBytesArray    Serializator::SSerializeNoSig (const Transaction& aTransaction)
 
 void    Serializator::SSerialize
 (
-    const   Transaction&    aTransaction,
-    GpByteWriter&           aWriter
+    const TransactionT& aTransaction,
+    GpByteWriter&       aWriter
 )
 {
     SSerialize(aTransaction.signatures, aWriter, false);
-    SSerialize(aTransaction.message_serialized, aWriter, false);
+    SSerialize(aTransaction.message, aWriter);
 }
 
 void    Serializator::SSerializeNoSig
 (
-    const Transaction&  aTransaction,
+    const TransactionT& aTransaction,
     GpByteWriter&       aWriter
 )
 {
-    SSerialize(aTransaction.message_serialized, aWriter, false);
+    SSerialize(aTransaction.message, aWriter);
 }
 
 void    Serializator::SSerialize

@@ -9,7 +9,7 @@ class SOL_CORE_DATA_MODEL_ENTITIES_API TransactionDesc final: public GpTypeStruc
 public:
     CLASS_REMOVE_CTRS_EXCEPT_DEFAULT(TransactionDesc)
     CLASS_DECLARE_DEFAULTS(TransactionDesc)
-    TYPE_STRUCT_DECLARE("9df1805d-bc4f-492e-8152-b15ca1d60732"_sv)
+    TYPE_STRUCT_DECLARE("62006d2e-3586-4847-9e09-5cd5cce4a1d2"_sv)
 
 public:
     using NetworkTypeT  = NetworkType;
@@ -20,6 +20,8 @@ public:
     virtual                     ~TransactionDesc    (void) noexcept override final;
 
 public:
+    GpVector<GpBytesArray>      signatures;
+    MessageDesc                 message;
 };
 
 }//namespace Sol::Core::DataModel

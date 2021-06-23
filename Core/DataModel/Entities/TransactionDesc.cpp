@@ -12,9 +12,10 @@ TransactionDesc::~TransactionDesc (void) noexcept
 {
 }
 
-void    TransactionDesc::_SCollectStructProps (GpTypePropInfo::C::Vec::Val& /*aPropsOut*/)
+void    TransactionDesc::_SCollectStructProps (GpTypePropInfo::C::Vec::Val& aPropsOut)
 {
-    //PROP();
+    PROP(signatures);
+    PROP(message);
 }
 
 }//namespace Sol::Core::DataModel

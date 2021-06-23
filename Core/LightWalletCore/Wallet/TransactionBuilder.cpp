@@ -12,10 +12,8 @@ TransactionBuilder::~TransactionBuilder (void) noexcept
 {
 }
 
-Transaction::SP TransactionBuilder::Build (void)
+Sol::Core::DataModel::TransactionDesc::SP   TransactionBuilder::Build (void)
 {
-    SerializeMessage();
-
     return std::move(iTransaction);
 }
 
@@ -63,37 +61,35 @@ TransactionBuilder& TransactionBuilder::AddInstruction (Sol::Core::DataModel::In
 
 TransactionBuilder& TransactionBuilder::AddSign (const GpCryptoAddress& aAddress)
 {
-    SerializeMessage();
-
     //Sign
-    Transaction& tx = _Transaction();
-    tx.signatures.emplace_back(aAddress.SignData(tx.message_serialized));
+    TransactionT& tx = _Transaction();
+    tx.signatures.emplace_back(aAddress.SignData(SerializedMessage()));
 
     return *this;
 }
 
-Transaction&    TransactionBuilder::_Transaction (void)
+Sol::Core::DataModel::TransactionDesc&  TransactionBuilder::_Transaction (void)
 {
     if (iTransaction.IsNULL())
     {
-        iTransaction = MakeSP<Transaction>();
+        iTransaction = MakeSP<TransactionT>();
     }
 
     return iTransaction.Vn();
 }
 
-void    TransactionBuilder::SerializeMessage (void)
+const GpBytesArray& TransactionBuilder::SerializedMessage (void)
 {
-    Transaction& tx = _Transaction();
-
-    if (tx.message_serialized.size() == 0)
+    if (iSerializedData.size() == 0)
     {
-        tx.message_serialized.reserve(2048);
-        GpByteWriterStorageByteArray    dataStorage(tx.message_serialized);
+        iSerializedData.reserve(2048);
+        GpByteWriterStorageByteArray    dataStorage(iSerializedData);
         GpByteWriter                    dataWriter(dataStorage);
 
-        Serializator::SSerialize(tx.message, dataWriter);
+        Serializator::SSerialize(_Transaction().message, dataWriter);
     }
+
+    return iSerializedData;
 }
 
 }//namespace Sol::Core::LightWallet

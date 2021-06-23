@@ -42,11 +42,10 @@ GetTransactionRqData::GetTransactionRqData (void) noexcept
 GetTransactionRqData::GetTransactionRqData
 (
     std::string_view            aTxSigBase58,
-    const EncodingType::EnumT   aEncoding,
     const Commitment::EnumT     aCommitment
 ):
 tx_sig_base58(aTxSigBase58),
-config(aEncoding, aCommitment)
+config(EncodingType::base64, aCommitment)
 {
 }
 

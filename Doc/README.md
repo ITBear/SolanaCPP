@@ -1,11 +1,3 @@
-[![Documentation Status](https://readthedocs.org/projects/solana-cpp/badge/?version=latest)](https://solana-cpp.readthedocs.io/en/latest/?badge=latest)
-
-# Documentation online
-
-The actual online version of the documentation you can find at:
-
-https://solana-cpp.readthedocs.io/en/latest/
-
 # How to build documentation
 
 It is assumed that this documentation will be hosted on the website https://readthedocs.org/.
@@ -32,3 +24,10 @@ To build an HTML version of the documentation on your computer:
 Go to `build/html` directory and open `index.html` file in your browser.
 
 You have also some other formats to build. Run `make help` to see those options.
+
+
+# Documentation online
+
+The actual online version of the documentation you can find at:
+
+https://solana-cpp.readthedocs.io/en/latest/

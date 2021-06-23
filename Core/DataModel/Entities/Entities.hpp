@@ -8,5 +8,8 @@
 #include "BuiltinProgramId.hpp"
 #include "Commitment.hpp"
 #include "CommitmentDesc.hpp"
+#include "ContextDesc.hpp"
 #include "EncodingType.hpp"
 #include "TransactionDesc.hpp"
+#include "TransactionResultDesc.hpp"
+#include "VersionDesc.hpp"

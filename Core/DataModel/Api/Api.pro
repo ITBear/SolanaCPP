@@ -27,8 +27,11 @@ LIBS += -lSolCoreDataModelEntities$$TARGET_POSTFIX$$SOL_LIB_V
 #------------------------------ LIBS END ---------------------------------
 
 SOURCES += \
+	Methods/getBalance.cpp \
 	Methods/getRecentBlockhash.cpp \
 	Methods/getTransaction.cpp \
+	Methods/getTransactionCount.cpp \
+	Methods/getVersion.cpp \
 	Methods/requestAirdrop.cpp \
 	Methods/sendTransaction.cpp
 
@@ -36,7 +39,10 @@ HEADERS += \
     Api_global.hpp \
 	Api.hpp \
 	Methods/Methods.hpp \
+	Methods/getBalance.hpp \
 	Methods/getRecentBlockhash.hpp \
 	Methods/getTransaction.hpp \
+	Methods/getTransactionCount.hpp \
+	Methods/getVersion.hpp \
 	Methods/requestAirdrop.hpp \
 	Methods/sendTransaction.hpp
